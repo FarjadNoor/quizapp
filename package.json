@@ -2,7 +2,7 @@
   "name": "employeeinfo",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://farjadnoor.github.io/quizapp",
+  "homepage": "https://farjadnoor.github.io/React-Life-Cycle-Hooks---Kid-Performance",
   "dependencies": {
     "@material-ui/core": "^3.0.1",
     "@material-ui/icons": "^3.0.1",
