@@ -1,165 +1,68 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import QuizInfo from './Screens/QuizInfo/QuizInfo'
-import QuizPage from './Screens/QuizPage/QuizPage'
-import Login from './Screens/Login/Login'
-import CourseList from './Screens/CourseList/CourseList'
-import KeyPage from './Screens/KeyPage/KeyPage'
 import './App.css';
+import Kid from './Component/Kid/Kid'
+import Teacher from './Component/Teacher/Teacher'
+import Judge from './Component/Judge/Judge'
+
 
 class App extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props);
 
     this.state = {
-      isLogin: false,
-      quizzes: [
-        {
-          name: 'AngularJs',
-          Quiz: [
-            {
-              name: 'quiz1', questions: [
-                {
-                  ques1: [{ ques: 'what is your name?', ans: ['Farjad', 'Noor', 'Eusufi'], correct: 1 }],
-                  ques2: [{ ques: 'what is my name?', ans: ['Farjad', 'Noor', 'Eusufi'], correct: 1 }]
-                }
-              ]
-            },
-            {
-              name: 'quiz2', questions: [
-                { ques1: [{ ques: 'what is your name?', ans: ['Farjad', 'Noor', 'Eusufi'],correct: 1 }] }
-              ]
-            },
-            {
-              name: 'quiz3', questions: [
-                { ques1: [{ ques: 'what is your name?', ans: ['Farjad', 'Noor', 'Eusufi'],correct: 1 }] }
-              ]
-            }
-          ]
-        },
-        {
-          name: 'React',
-          Quiz: [
-            {
-              name: 'quiz1', questions: [
-                {
-                  ques1: [{ ques: 'what is your name?', ans: ['Farjad', 'Noor', 'Eusufi'] }],
-                  ques2: [{ ques: 'what is my name?', ans: ['Farjad', 'Noor', 'Eusufi'] }]
-                }
-              ]
-            },
-            {
-              name: 'quiz2', questions: [
-                { ques1: [{ ques: 'what is your name?', ans: ['Farjad', 'Noor', 'Eusufi'] }] }
-              ]
-            },
-            {
-              name: 'quiz3', questions: [
-                { ques1: [{ ques: 'what is your name?', ans: ['Farjad', 'Noor', 'Eusufi'] }] }
-              ]
-            }
-          ]
-        },
-        {
-          name: 'PWA',
-          Quiz: [
-            {
-              name: 'quiz1', questions: [
-                {
-                  ques1: [{ ques: 'what is your name?', ans: ['Farjad', 'Noor', 'Eusufi'] }],
-                  ques2: [{ ques: 'what is my name?', ans: ['Farjad', 'Noor', 'Eusufi'] }]
-                }
-              ]
-            },
-            {
-              name: 'quiz2', questions: [
-                { ques1: [{ ques: 'what is your name?', ans: ['Farjad', 'Noor', 'Eusufi'] }] }
-              ]
-            },
-            {
-              name: 'quiz3', questions: [
-                { ques1: [{ ques: 'what is your name?', ans: ['Farjad', 'Noor', 'Eusufi'] }] }
-              ]
-            }
-          ]
-        },
-        {
-          name: 'HTML',
-          Quiz: [
-            {
-              name: 'quiz1', questions: [
-                {
-                  ques1: [{ ques: 'what is your name?', ans: ['Farjad', 'Noor', 'Eusufi'] }],
-                  ques2: [{ ques: 'what is my name?', ans: ['Farjad', 'Noor', 'Eusufi'] }]
-                }
-              ]
-            },
-            {
-              name: 'quiz2', questions: [
-                { ques1: [{ ques: 'what is your name?', ans: ['Farjad', 'Noor', 'Eusufi'] }] }
-              ]
-            },
-            {
-              name: 'quiz3', questions: [
-                { ques1: [{ ques: 'what is your name?', ans: ['Farjad', 'Noor', 'Eusufi'] }] }
-              ]
-            }
-          ]
-        }
-      ]
+      volume: 0
     };
 
-    this.enterQuiz = this.enterQuiz.bind(this);
-    this.enterCourse = this.enterCourse.bind(this);
-    this.showList = this.showList.bind(this);
-    this.login = this.login.bind(this);
+    this.updateSteps = this.updateSteps.bind(this);
+    this.updateEmotion = this.updateEmotion.bind(this);
+    this.kidQualified = this.kidQualified.bind(this);
+    this.isQualified = this.isQualified.bind(this);
+
 
   }
 
-  enterCourse(index) {
-    const { quizzes } = this.state;
-
-    this.setState({ quiz: quizzes[index],
-    course: true });
+  static getDerivedStateFromProps() {
+    return { volume: 5 }
   }
 
-  enterQuiz(index) {
-    const { quizzes } = this.state;
-    this.setState({ quiz: quizzes[index].Quiz[index], test: true });
+  updateEmotion() {
+    this.setState({ emotion: 'Happy' })
   }
 
-  showList() {
-    this.setState({ quiz: null });
+  updateSteps(furtherSteps) {
+    this.setState({ furtherSteps })
   }
 
-  login() {
-    this.setState({ isLogin: true });
-    console.log('login**');
+  kidQualified(stars) {
+    this.setState({ stars });
+  }
+
+  isQualified(isQualified){
+    this.setState({isQualified : true});
   }
 
   render() {
-    const { quizzes, quiz, isLogin, course, prockey, test, startquiz } = this.state;
-
+    const { volume, furtherSteps, emotion, stars, isQualified } = this.state;
+    console.log('volume***', volume);
+    console.log('furtherSteps***', furtherSteps)
     return (
-      <div className="page">
-        <div className="App">
-          <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <h1 className="App-title"> Quiz Panel</h1>
-          </header>
-        </div>
-        <div>
-          {/* <QuizPage quiz={quiz} quiz1={quiz.Quiz} /> */}
-          {!isLogin && <Login onLogin={this.login} />}
-          {isLogin && !course && <CourseList list={quizzes} onPress={this.enterCourse} />}
-          {isLogin && course && !test && <QuizInfo quiz={quiz} quiz1={quiz.Quiz} onPress={this.enterQuiz} onBack={this.showList} />}
-          {isLogin && test && course && !prockey && <KeyPage / >}
-        </div>
+      <div>
+        <h1>Kid</h1>
+        {!isQualified && <Kid dressColor='green' furtherSteps={furtherSteps} emotion={emotion} stars={stars} isQualified = {isQualified}/>}
+        <br />
+        <hr />
+        <br />
+        <Teacher updateSteps={this.updateSteps} />
+        <br />
+        <br />
+        <Judge updateEmotion={this.updateEmotion} kidQualified={this.kidQualified} />
+        <br />
+        <button onClick={this.isQualified}>Ask the Kid to Leave the Show</button>
       </div>
 
-    )
+    );
   }
-
 }
 
 export default App;
